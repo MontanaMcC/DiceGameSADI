@@ -1,0 +1,94 @@
+package view;
+
+import java.awt.GridLayout;
+
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+import model.DicePairImpl;
+import model.interfaces.DicePair;
+import model.interfaces.GameEngine;
+import model.interfaces.Player;
+
+@SuppressWarnings("serial")
+public class DicePanel extends JPanel {
+	private JLabel dice1 = new JLabel("Dice 1: ");
+	private JLabel dice2 = new JLabel("Dice 2: ");
+	private JLabel sum = new JLabel("Total : ");
+	private JLabel houseDice1 = new JLabel("House Dice 1: ");
+	private JLabel houseDice2 = new JLabel("House Dice 2: ");
+	private JLabel houseSum = new JLabel("House Total: ");
+	private JLabel result = new JLabel("Result: ");
+
+	public DicePanel(GameEngine ge, AppFrame frame) {
+		setLayout(new GridLayout(3, 2));
+		add(dice1);
+		add(dice2);
+		add(sum);
+		add(houseDice1);
+		add(houseDice2);
+		add(houseSum);
+		add(result);
+
+	}
+	
+	public void updatePanel(Player player, DicePair dicePair) {
+		// if player has not rolled yet, roll for them else, retrieve dicePair from parameters
+		if (player.getRollResult() == null) {
+			int roll1 = 0;
+			int roll2 = 0;
+			DicePair dice = new DicePairImpl(roll1, roll2, 6);
+			
+			player.setRollResult(dice);
+			dice1.setText("Dice 1: " + roll1);
+			dice2.setText("Dice 2: " + roll2);
+			sum.setText("Sum: " + (roll1 + roll2));
+			resetHouse();	
+		}
+		else if (player.getRollResult() != null) {
+			int roll1 = dicePair.getDice1();
+			int roll2 = dicePair.getDice2();
+			int sumOfDice = roll1 + roll2;
+			dice1.setText("Dice1: " + dice1);
+			dice2.setText("Dice2: " + dice2);
+			sum.setText("Sum: " + sumOfDice);
+		}
+		
+		if (Integer.parseInt(houseSum.getText().substring(10)) != 0) {
+			updateResult();
+		} 
+		else if (Integer.parseInt(houseSum.getText().substring(10)) == 0 && Integer.parseInt(sum.getText().substring(5)) == 0) {
+			result.setText("Result: ");
+		}
+	}
+	
+	public void updateHouse(DicePair dicePair) {
+		int dice1 = dicePair.getDice1();
+		int dice2 = dicePair.getDice2();
+		int sum = dice1 + dice2;
+		houseDice1.setText("HouseDice1: " + dice1);
+		houseDice2.setText("HouseDice2: " + dice2);
+		houseSum.setText("HouseSum: " + sum);
+		updateResult();
+	}
+	
+	public void updateResult() {
+		String resultText;
+		if (Integer.parseInt(sum.getText().substring(5)) > Integer.parseInt(houseSum.getText().substring(10))) {
+			resultText = "Win!";
+			result.setText("Result: " + resultText);
+		} else if (Integer.parseInt(sum.getText().substring(5)) < Integer.parseInt(houseSum.getText().substring(10))) {
+			resultText = "Lost!";
+			result.setText("Result: " + resultText);
+		} else if (Integer.parseInt(sum.getText().substring(5)) == Integer.parseInt(houseSum.getText().substring(10))) {
+			resultText = "Draw";
+			result.setText("Result: " + resultText);
+		}
+	}
+	
+	public void resetHouse() {
+		houseDice1.setText("House Dice 1: 0");
+		houseDice2.setText("House Dice 2: 0");
+		houseSum.setText("House Sum: 0");
+	}
+}

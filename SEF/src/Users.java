@@ -1,0 +1,116 @@
+import java.util.*;
+public class Users {
+	public Scanner object = new Scanner(System.in);
+	List<List<String>> profiles = new ArrayList<List<String>>();
+
+	//Method for checking if a string contains all numbers.
+	public static boolean isNumeric(String str)
+	  {
+	    try
+	    {
+	      double d = Double.parseDouble(str);
+	    }
+	    catch(NumberFormatException nfe)
+	    {
+	      return false;
+	    }
+	    return true;
+	  }
+	
+	public void createAccount() {
+		 //Asking user to enter details and scanning for them
+		ArrayList<String> profile = new ArrayList<String>();
+		String eNumber;
+		String contactEmail;
+		
+		System.out.println("Please enter your eNumber");
+		eNumber=object.nextLine();
+		System.out.println("Please enter your contact email");
+		contactEmail=object.nextLine();
+		System.out.println("Your password will be sent to your email: "+contactEmail);
+		
+		profile.add(eNumber);
+		profile.add(contactEmail);
+	}
+	
+	public void viewProfile(ArrayList<String> profile) {
+		System.out.println("eNumber" + profile.get(0));
+		System.out.println("Name: " + profile.get(1));
+		System.out.println("contactEmail: " + profile.get(2));
+		System.out.println("phoneNumber: " + profile.get(3));
+		System.out.println("address: " + profile.get(4));
+		System.out.println("suburb: " + profile.get(5));
+		System.out.println("position: " + profile.get(6));
+
+	}
+			
+			
+	public void editProfile(ArrayList<String> profile) {
+		do {
+			//Users enter an email , if the field is empty or doesn't have "@" sign then print an error message
+			System.out.println("Enter your contact email: ");
+			profile.add(1 , object.nextLine());
+			if (profile.get(1).length() == 0 || profile.get(1).indexOf("@")<0)
+				System.out.println("Invalid email, please try again");
+		} while(profile.get(1).length() == 0 || profile.get(1).indexOf("@")<0);
+			
+		do {
+			//Users enter a name, if the field is empty then print an error message
+			System.out.println("Enter your name: ");
+			profile.add(2, object.nextLine());
+			if (profile.get(2).length() == 0)
+				System.out.println("Invalid name, please try again");
+		} while(profile.get(2).length() == 0);
+			
+		do {
+			//Users enter an address , if the field is empty then print an error message
+			System.out.println("Enter your address: ");
+			profile.add(object.nextLine());
+			if (profile.get(3).length() == 0)
+				System.out.println("Invalid address, please try again");
+		} while(profile.get(3).length() == 0);
+			
+		do {
+			//Users enter a suburb , if the field is empty then print an error message
+			System.out.println("Enter your suburb: ");
+			profile.add(object.nextLine());
+			if (profile.get(4).length() == 0)
+				System.out.println("Invalid suburb, please try again");
+		} while (profile.get(4).length() == 0);
+			
+			do {
+				//Users enter a position , if the field is empty then print an error message
+				System.out.println("Enter your staff position: ");
+				profile.add(object.nextLine());
+				if (profile.get(5).length() == 0)
+					System.out.println("Invalid position, please try again");
+			} while(profile.get(5).length() == 0);
+			
+			do {
+				//Users enter a phone number , if the entered number is not all digits or is smaller than 7 digits, print an error message 
+				//and if the string entered is not all numbers print an error message.
+				//Assumption: all phones number are longer than 7 digits.
+				System.out.println("Enter your phone number: ");
+				profile.add(object.nextLine());
+				if (profile.get(6).length() <= 7 || isNumeric(profile.get(6))==false)
+					System.out.println("Invalid phone number, please try again");
+			} while(profile.get(6).length() <= 7 || isNumeric(profile.get(6))==false);
+			
+			System.out.println("eNumber" + profile.get(0));
+			System.out.println("contactEmail: " + profile.get(1));
+			System.out.println("Name: " + profile.get(2));
+			System.out.println("address: " + profile.get(3));
+			System.out.println("suburb: " + profile.get(4));
+			System.out.println("position: " + profile.get(5));
+			System.out.println("phoneNumber: " + profile.get(6));
+			System.out.println("Changes are made sucessfully");
+
+			storeProfile(profile);
+		}
+	
+	public void storeProfile(ArrayList<String> profile) {
+		profiles.add(profile);
+	}
+	
+}
+ 

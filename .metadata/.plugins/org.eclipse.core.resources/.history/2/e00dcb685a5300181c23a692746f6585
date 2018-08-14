@@ -1,0 +1,142 @@
+import java.util.*;
+public class Users {
+	// defining our parameters
+	public static String eNumber="";
+	public static String contactEmail="";
+	public static String fullName="";
+	public static String phoneNumber="";
+	public static String address="";
+	public static String suburb="";
+	public static String position="";
+	public static Scanner object = new Scanner(System.in);
+
+	public static boolean eNumberValidation(String eNumber) {
+		//Checks if eNumber is on RMIT servers, if valid returns True, if not valid returns False
+		return true;
+	}
+
+	//Method for checking if a string contains all numbers.
+	public static boolean isNumeric(String str)
+	  {
+	    try
+	    {
+	      double d = Double.parseDouble(str);
+	    }
+	    catch(NumberFormatException nfe)
+	    {
+	      return false;
+	    }
+	    return true;
+	  }
+	
+	public static void createAccount() {
+		 
+		//Asking user to enter details and scanning for them
+		System.out.println("Please enter your eNumber");
+		Accounts.eNumber=object.nextLine();
+
+		System.out.println("Please enter your contact email");
+		contactEmail=object.nextLine();
+		//Checks if eNumber is valid, if valid, your password is sent to your emial address 
+		// if not valid, returns an error message
+		// Assumption: Validation possible through RMIT networks.
+		if(Accounts.eNumberValidation(Accounts.eNumber)) {
+			System.out.println("Your password will be sent to your email: "+contactEmail);
+		}
+		else {
+			System.out.println("Your eNumber wasn't valid");
+			System.exit(0);
+		}
+	}
+	
+		public static void viewProfile() {
+			System.out.println("Name: " + Accounts.fullName);
+			System.out.println("eNumber" + Accounts.eNumber);
+			System.out.println("contactEmail: " + Accounts.contactEmail);
+			System.out.println("phoneNumber: " + Accounts.phoneNumber);
+			System.out.println("address: " + Accounts.address);
+			System.out.println("suburb: " + Accounts.suburb);
+			System.out.println("position: " + Accounts.position);
+
+		}
+			
+			
+		public static void editProfile() {	
+			do {
+				//Users enter a name, if the field is empty then print an error message
+				System.out.println("Enter your name: ");
+				Accounts.fullName=object.nextLine();
+				if (Accounts.fullName.length() == 0)
+					System.out.println("Invalid name, please try again");
+			} while(Accounts.fullName.length() == 0);
+			
+			do {
+				//Users enter an email , if the field is empty or doesn't have "@" sign then print an error message
+				System.out.println("Enter your contact email: ");
+				Accounts.contactEmail=object.nextLine();
+				if (Accounts.contactEmail.length() == 0 || contactEmail.indexOf("@")<0)
+					System.out.println("Invalid email, please try again");
+			} while(Accounts.contactEmail.length() == 0 || contactEmail.indexOf("@")<0);
+			
+			do {
+				//Users enter an address , if the field is empty then print an error message
+				System.out.println("Enter your address: ");
+				Accounts.address=object.nextLine();
+				if (Accounts.address.length() == 0)
+					System.out.println("Invalid address, please try again");
+			} while(Accounts.address.length() == 0);
+			
+			do {
+				//Users enter a suburb , if the field is empty then print an error message
+				System.out.println("Enter your suburb: ");
+				Accounts.suburb=object.nextLine();
+				if (Accounts.suburb.length() == 0)
+					System.out.println("Invalid suburb, please try again");
+			} while (Accounts.suburb.length() == 0);
+			
+			do {
+				//Users enter a position , if the field is empty then print an error message
+				System.out.println("Enter your staff position: ");
+				Accounts.position=object.nextLine();
+				if (Accounts.position.length() == 0)
+					System.out.println("Invalid position, please try again");
+			} while(Accounts.position.length() == 0);
+			
+			do {
+				//Users enter a phone number , if the entered number is not all digits or is smaller than 7 digits, print an error message 
+				//and if the string entered is not all numbers print an error message.
+				//Assumption: all phones number are longer than 7 digits.
+				System.out.println("Enter your phone number: ");
+				Accounts.phoneNumber=object.nextLine();
+				if (Accounts.phoneNumber.length() <= 7 || isNumeric(Accounts.phoneNumber)==false)
+					System.out.println("Invalid phone number, please try again");
+			} while(Accounts.phoneNumber.length() <= 7 || isNumeric(Accounts.phoneNumber)==false);
+			
+			System.out.println("Name: " + Accounts.fullName);
+			System.out.println("eNumber" + Accounts.eNumber);
+			System.out.println("contactEmail: " + Accounts.contactEmail);
+			System.out.println("phoneNumber: " + Accounts.phoneNumber);
+			System.out.println("address: " + Accounts.address);
+			System.out.println("suburb: " + Accounts.suburb);
+			System.out.println("position: " + Accounts.position);
+			System.out.println("Changes are made sucessfully");
+
+			
+		}
+		
+		public static void dashboard() {
+			// a m=method to display what users will see once they log on. 
+			//Also be able to access other parts of the program from here.
+		}
+		
+		public static void login() {
+			// a function that logs in the user
+		}
+		
+		public static void logout() {	
+			//a function that lets the user logout of the system
+		}
+		
+		
+}
+ 

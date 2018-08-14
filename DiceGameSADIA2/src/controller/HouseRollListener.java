@@ -1,0 +1,40 @@
+package controller;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JOptionPane;
+
+import model.interfaces.GameEngine;
+import model.interfaces.Player;
+import view.AppFrame;
+
+public class HouseRollListener implements ActionListener {
+
+	private GameEngine gameEngine;
+	private AppFrame appFrame;
+
+	public HouseRollListener(GameEngine gameEngine, AppFrame appFrame) {
+		this.gameEngine = gameEngine;
+		this.appFrame = appFrame;
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// new thread to rollHouse if player have already rolled dice
+		Player player = appFrame.getSelectedPlayer(gameEngine);
+		if (player.getRollResult() != null) {
+			new Thread() {
+				@Override
+				public void run() {
+					gameEngine.rollHouse(1, 1000, 200);
+				}
+			}.start();
+
+		}
+		else if (player.getRollResult() == null) {
+			JOptionPane.showMessageDialog(appFrame, "Please roll dice for player first.");
+		}
+	}
+
+}

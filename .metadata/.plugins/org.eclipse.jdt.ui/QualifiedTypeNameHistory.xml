@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="com.googlecode.lanterna.TextColor.ANSI"/>
+<fullyQualifiedTypeName name="robot.ascii.AbstractASCIIBot"/>
+<fullyQualifiedTypeName name="robot.ascii.ASCIIBot"/>
+<fullyQualifiedTypeName name="robot.ascii.impl.Arm"/>
+<fullyQualifiedTypeName name="model.interfaces.DicePair"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="org.junit.Before"/>
+</qualifiedTypeNameHistroy>

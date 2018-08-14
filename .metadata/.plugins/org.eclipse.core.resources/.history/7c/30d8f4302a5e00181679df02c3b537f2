@@ -1,0 +1,31 @@
+import static org.junit.Assert.*;
+
+import java.util.ArrayList;
+
+import org.junit.*;
+
+public class PostJobTest {
+	private ArrayList<String> testJobs;
+	@Before
+	public void ArrayListInit() {
+		testJobs = new ArrayList<String>();
+	}
+	
+	@Test
+	public void testPostJob() {
+		testJobs.add("Bachelor of Computer Science");
+		testJobs.add("4:30");
+		testJobs.add("10.14.030");
+		
+		assertTrue(testJobs.contains("Bachelor of Computer Science"));
+		assertTrue(testJobs.contains("10.14.030"));
+		assertFalse(testJobs.isEmpty());
+		assertEquals(testJobs.size(), 3);
+		assertEquals("4.30", testJobs.get(1));
+		
+		testJobs.clear();
+		
+		assertTrue(testJobs.isEmpty());
+	}
+
+}

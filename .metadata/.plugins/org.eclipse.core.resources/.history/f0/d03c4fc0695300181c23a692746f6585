@@ -1,0 +1,10 @@
+
+public class Profiles {
+	public static void searchProfiles() {
+		//method to search profile on program
+	}
+	
+	public static void viewProfiles() {
+
+	}
+}

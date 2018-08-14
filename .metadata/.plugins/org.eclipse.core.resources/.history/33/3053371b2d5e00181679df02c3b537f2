@@ -1,0 +1,27 @@
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+public class UsersTest {
+
+	@Test
+	public void testCreateAccount() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testViewProfile() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testEditProfile() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testStoreProfile() {
+		fail("Not yet implemented");
+	}
+
+}

@@ -1,0 +1,13 @@
+
+public class CasualStaff extends Accounts{
+	public static String resume="";
+	public static String searchTerm="";
+	
+	public static void searchJobs(String searchTerm) {
+		//Casuals can search for jobs using a search Term
+}
+	public static String applyForJobs(String resume) {
+		//Allows casuals to apply for a job that they have found with their resume.
+		return resume;
+	}
+}

@@ -1,0 +1,12 @@
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+public class PostJobTest {
+
+	@Test
+	public void testPostJob() {
+		fail("Not yet implemented");
+	}
+
+}

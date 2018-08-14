@@ -1,0 +1,79 @@
+package view;
+
+import java.awt.FlowLayout;
+import java.util.Collection;
+import java.util.Iterator;
+
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JToolBar;
+
+import controller.HouseRollListener;
+import controller.PlaceBetListener;
+import controller.RollListener;
+import controller.SelectPlayerListener;
+import model.interfaces.GameEngine;
+import model.interfaces.Player;
+
+@SuppressWarnings("serial")
+public class ToolBar extends JToolBar {
+
+	private JButton btnPlaceBet = new JButton("Place Bet");
+	private JButton btnRoll = new JButton("Roll Dice");
+	private JButton btnRollHouse = new JButton("Roll House");
+	private JComboBox<String> comboBox = new JComboBox<String>();
+	SelectPlayerListener selectPlayerListener;
+
+	public ToolBar(GameEngine gameEngine, AppFrame frame) {
+		add(btnPlaceBet);
+		add(btnRoll);
+		add(btnRollHouse);
+		add(comboBox);
+
+		setLayout(new FlowLayout(FlowLayout.LEFT));
+
+		selectPlayerListener = new SelectPlayerListener(gameEngine, frame);
+		comboBox.addActionListener(selectPlayerListener);
+
+		PlaceBetListener placeBetListener = new PlaceBetListener(gameEngine, frame);
+		btnPlaceBet.addActionListener(placeBetListener);
+
+		RollListener rollListener = new RollListener(gameEngine, frame);
+		btnRoll.addActionListener(rollListener);
+
+		HouseRollListener houseRollListener = new HouseRollListener(gameEngine, frame);
+		btnRollHouse.addActionListener(houseRollListener);
+
+	}
+
+	public void updatePlayers(GameEngine gameEngine) {
+		comboBox.removeActionListener(selectPlayerListener);
+		comboBox.removeAllItems();
+		Collection<Player> players = gameEngine.getAllPlayers();
+		Player player;
+		Iterator<Player> iterator = players.iterator();
+		while (iterator.hasNext()) {
+			player = iterator.next();
+			comboBox.addItem(player.toString());
+		}
+
+		comboBox.addActionListener(selectPlayerListener);
+	}
+
+	public Player getPlayer(GameEngine gameEngine) {
+		String player = (String) comboBox.getSelectedItem();
+		Player gamer;
+		player.toString();
+		Collection<Player> players = gameEngine.getAllPlayers();
+		Iterator<Player> iterator = players.iterator();
+		while (iterator.hasNext()) {
+			Player test = iterator.next();
+			if (test.toString().equals(player)) {
+				gamer = test;
+				return gamer;
+			}
+		}
+		return null;
+	}
+
+}

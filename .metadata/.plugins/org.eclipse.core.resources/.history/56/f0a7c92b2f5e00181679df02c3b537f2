@@ -1,0 +1,70 @@
+import static org.junit.Assert.*;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+import org.junit.Before;
+import org.junit.Test;
+
+public class UsersTest {
+	public Scanner object = new Scanner(System.in);
+	List<List<String>> profiles = new ArrayList<List<String>>();
+
+	@Before
+	public void profileInit() {
+		ArrayList<String> profile = new ArrayList<String>();
+		profile.add("e123456");
+		profile.add("jonhsmith@gmail.com");
+		profile.add("John Smith");
+		profile.add("123 Flinders Street");
+		profile.add("Melbourne");
+		profile.add("Course Coordinator");
+		profile.add("0400123123");
+		
+		testStoreProfile(profile);
+	}
+	
+	@Test
+	public void testCreateAccount() {
+		ArrayList<String> profile = new ArrayList<String>();
+		String eNumber;
+		String contactEmail;
+		
+		assertTrue(profile.isEmpty());
+		
+		System.out.println("Please enter your eNumber");
+		eNumber=object.nextLine();
+		assertTrue(eNumber.length() > 0);
+		System.out.println("Please enter your contact email");
+		contactEmail=object.nextLine();
+		assertTrue(contactEmail.length() > 0);
+		System.out.println("Your password will be sent to your email: "+contactEmail);
+		
+		profile.add(eNumber);
+		profile.add(contactEmail);
+		
+		assertFalse(profile.isEmpty());
+		assertEquals(profile.get(0), eNumber);
+		assertEquals(profile.get(1), contactEmail);
+		assertNull(profile.get(2));
+	}
+
+	@Test
+	public void testViewProfile() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testEditProfile() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testStoreProfile(ArrayList<String> profile) {
+		profiles.add(profile);
+		
+		assertFalse(profiles.isEmpty());
+	}
+
+}

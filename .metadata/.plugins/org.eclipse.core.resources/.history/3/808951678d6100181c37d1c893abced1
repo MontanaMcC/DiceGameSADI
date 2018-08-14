@@ -1,0 +1,26 @@
+package controller;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import model.interfaces.GameEngine;
+import view.AppFrame;
+
+public class NewPlayerListener implements ActionListener {
+
+	private AppFrame appFrame;
+	private GameEngine gameEngine;
+
+	public NewPlayerListener(GameEngine gameEngine, AppFrame appFrame) {
+		this.appFrame = appFrame;
+		this.gameEngine = gameEngine;
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		//add player and update combobox with new player
+		gameEngine.addPlayer(appFrame.createPlayer(gameEngine));
+		appFrame.updateComboBox(gameEngine);
+	}
+
+}

@@ -1,0 +1,12 @@
+import java.util.Scanner;
+
+public class Timetables extends Users {
+	public static Scanner object = new Scanner(System.in);
+
+	public static void viewTimetable() {
+		System.out.println("className: " + Timetables.className);
+		System.out.println("classTime: " + Timetables.classTime);
+		System.out.println("timeSlots: " + Timetables.timeSlots);		
+	}
+	
+}

@@ -1,0 +1,13 @@
+
+public class Profiles {
+	public static String searchTerm="";
+	public static String profileLink;
+	public static String searchProfiles(String searchTerm) {
+		//method to search profile on program
+		return profileLink;
+	}
+	
+	public static void viewProfiles(String profileLink) {
+		Accounts.viewProfile();
+	}
+}
